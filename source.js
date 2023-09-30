@@ -33,7 +33,7 @@ function main() {
         console.log("Computer is the victor!");
     }
     else {
-        console.log("It's a tie!");
+        console.log("It's a draw!");
     }
 }
 
@@ -58,6 +58,9 @@ function getComputerChoice() {
 function getPlayerChoice() {
     // User input choice
     let playerChoice;
+    do {
+        playerChoice = prompt("Enter 'rock', 'paper', or 'scissors'.");
+    } while (!(playerChoice === r || playerChoice === p || playerChoice === s));
     return playerChoice;
 }
 
