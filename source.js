@@ -3,10 +3,13 @@ const p = "paper";
 const s = "scissors";
 
 function main() {
+    // Initialize variables for num of rounds and wins.
     let rounds = 1;
     let userWins = 0;
     let compWins = 0
     while (rounds <= 5) {
+        // Play five rounds of rock paper scissors, count victories
+        // for each player.
         console.log(`Round ${rounds}!`)
         let userChoice = getPlayerChoice();
         let computerChoice = getComputerChoice();
@@ -21,6 +24,7 @@ function main() {
         console.log(result);
         rounds++;
     }
+    // Determine the final winner after five rounds, give feedback to user.
     console.log(`User wins: ${userWins}. Computers wins: ${compWins}.`)
     if (userWins > compWins) {
         console.log("User is the victor!");
@@ -35,6 +39,7 @@ function main() {
 
 
 function getComputerChoice() {
+    // Randomized computer choice
     let num = Math.floor(Math.random() * 3);
     let compChoice;
     if (num === 0) {
@@ -51,12 +56,14 @@ function getComputerChoice() {
 
 
 function getPlayerChoice() {
-    let playerChoice = prompt("Choose rock, paper, or scissors:");
-    return playerChoice.toLowerCase();
+    // User input choice
+    let playerChoice;
+    return playerChoice;
 }
 
 
 function playRound(playerSelection, computerSelection) {
+    // Logic for determining the winner of a single round of play
     let victory = "User wins!";
     if (playerSelection === computerSelection) {
         return "It's a tie!";
