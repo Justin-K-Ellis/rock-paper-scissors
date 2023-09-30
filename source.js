@@ -3,11 +3,36 @@ const p = "paper";
 const s = "scissors";
 
 function main() {
-    let userChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
-    let result = playRound(userChoice, computerChoice);
-    console.log(result);
+    let rounds = 1;
+    let userWins = 0;
+    let compWins = 0
+    while (rounds <= 5) {
+        console.log(`Round ${rounds}!`)
+        let userChoice = getPlayerChoice();
+        let computerChoice = getComputerChoice();
+        console.log(`Player chooses ${userChoice}, computer chooses ${computerChoice}.`)
+        let result = playRound(userChoice, computerChoice);
+        if (result === "User wins!") {
+            userWins++;
+        }
+        else if (result === "Computer wins!") {
+            compWins++;
+        }
+        console.log(result);
+        rounds++;
+    }
+    console.log(`User wins: ${userWins}. Computers wins: ${compWins}.`)
+    if (userWins > compWins) {
+        console.log("User is the victor!");
+    }
+    else if (compWins > userWins) {
+        console.log("Computer is the victor!");
+    }
+    else {
+        console.log("It's a tie!");
+    }
 }
+
 
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3);
@@ -32,7 +57,7 @@ function getPlayerChoice() {
 
 
 function playRound(playerSelection, computerSelection) {
-    let victory = "You win!";
+    let victory = "User win!";
     if (playerSelection === computerSelection) {
         return "It's a tie!";
     }
