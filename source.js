@@ -11,9 +11,9 @@ function main() {
         // Play five rounds of rock paper scissors, count victories
         // for each player.
         console.log(`Round ${rounds}!`)
-        let userChoice = getPlayerChoice();
         let computerChoice = getComputerChoice();
-        console.log(`Player chooses ${userChoice}, computer chooses ${computerChoice}.`)
+        let userChoice = getUserChoice();
+        console.log(`User chooses ${userChoice}, computer chooses ${computerChoice}.`)
         let result = playRound(userChoice, computerChoice);
         if (result === "User wins!") {
             userWins++;
@@ -55,13 +55,13 @@ function getComputerChoice() {
 }
 
 
-function getPlayerChoice() {
+function getUserChoice() {
     // User input choice
-    let playerChoice;
+    let userChoice;
     do {
-        playerChoice = prompt("Enter 'rock', 'paper', or 'scissors'.");
-    } while (!(playerChoice === r || playerChoice === p || playerChoice === s));
-    return playerChoice;
+        userChoice = prompt("Enter 'rock', 'paper', or 'scissors'.").toLowerCase();
+    } while (!(userChoice === r || userChoice === p || userChoice === s));
+    return userChoice;
 }
 
 
