@@ -1,6 +1,20 @@
-#outer-contaier {
-    display: flex;
-    flex-direction: column;
+* {
+    border: 1px solid black;
+}
+
+#outer-container {
     margin: auto;
     width: 50%;
+}
+
+#contaier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#choice-info {
+    display: flex;
+    flex-direction: row;
 }
