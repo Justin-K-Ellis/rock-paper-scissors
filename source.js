@@ -2,40 +2,53 @@ const r = "rock";
 const p = "paper";
 const s = "scissors";
 
-function main() {
-    // Initialize variables for num of rounds and wins.
-    let rounds = 1;
-    let userWins = 0;
-    let compWins = 0
-    while (rounds <= 5) {
-        // Play five rounds of rock paper scissors, count victories
-        // for each player.
-        console.log(`Round ${rounds}!`)
-        let computerChoice = getComputerChoice();
-        let userChoice = getUserChoice();
-        console.log(`User chooses ${userChoice}, computer chooses ${computerChoice}.`)
-        let result = playRound(userChoice, computerChoice);
-        if (result === "User wins!") {
-            userWins++;
-        }
-        else if (result === "Computer wins!") {
-            compWins++;
-        }
-        console.log(result);
-        rounds++;
-    }
-    // Determine the final winner after five rounds, give feedback to user.
-    console.log(`User wins: ${userWins}. Computers wins: ${compWins}.`)
-    if (userWins > compWins) {
-        console.log("User is the victor!");
-    }
-    else if (compWins > userWins) {
-        console.log("Computer is the victor!");
-    }
-    else {
-        console.log("It's a draw!");
-    }
-}
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+
+let playerChoiceDisplay = document.querySelector("#player-choice");
+let compChoiceDisplay = document.querySelector("#comp-choice");
+let winnerInfo = document.querySelector("#winner-info");
+
+rockBtn.addEventListener("click", () => {
+    playerChoiceDisplay.textContent = "Rock";
+})
+
+// function main() {
+//     // Initialize variables for num of rounds and wins.
+//     let rounds = 1;
+//     let userWins = 0;
+//     let compWins = 0
+//     while (rounds <= 1) {
+//         // Temporaily reduce to one round.
+//         // Play five rounds of rock paper scissors, count victories
+//         // for each player.
+//         //console.log(`Round ${rounds}!`) // TODO: make DOM method.
+//         let computerChoice = getComputerChoice();
+//         let userChoice = getUserChoice();
+//         //console.log(`User chooses ${userChoice}, computer chooses ${computerChoice}.`) // TODO: make DOM method.
+//         let result = playRound(userChoice, computerChoice);
+//         if (result === "User wins!") {
+//             userWins++;
+//         }
+//         else if (result === "Computer wins!") {
+//             compWins++;
+//         }
+//         //console.log(result); // TODO: make DOM method.
+//         rounds++;
+//     }
+//     // Determine the final winner after five rounds, give feedback to user.
+//     console.log(`User wins: ${userWins}. Computers wins: ${compWins}.`)
+//     if (userWins > compWins) {
+//         console.log("User is the victor!");
+//     }
+//     else if (compWins > userWins) {
+//         console.log("Computer is the victor!");
+//     }
+//     else {
+//         console.log("It's a draw!");
+//     }
+// }
 
 
 function getComputerChoice() {
@@ -55,13 +68,22 @@ function getComputerChoice() {
 }
 
 
+// function getUserChoice() {
+//     // User input choice
+//     let userChoice;
+//     do {
+//         userChoice = prompt("Enter 'rock', 'paper', or 'scissors'.").toLowerCase();
+//     } while (!(userChoice === r || userChoice === p || userChoice === s));
+//     return userChoice;
+// }
+
 function getUserChoice() {
-    // User input choice
-    let userChoice;
-    do {
-        userChoice = prompt("Enter 'rock', 'paper', or 'scissors'.").toLowerCase();
-    } while (!(userChoice === r || userChoice === p || userChoice === s));
-    return userChoice;
+    // New getUserChoice function for UI version
+    const playerChoice = document.querySelector("player-choice");
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", () => {
+        playerChoice.textContent += "The player pushed a button!";
+    })
 }
 
 
@@ -84,3 +106,5 @@ function playRound(playerSelection, computerSelection) {
         return "Computer wins!";
     }
 }
+
+main();
