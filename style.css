@@ -14,7 +14,17 @@
     justify-content: space-around;
 }
 
+#round-container {
+    display: flex;
+    justify-content: space-around;
+}
+
 #choice-info {
     display: flex;
     flex-direction: row;
+}
+
+#inner-points-display {
+    display: flex;
+    justify-content: space-around;
 }
