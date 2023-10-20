@@ -10,8 +10,33 @@ let playerChoiceDisplay = document.querySelector("#player-choice");
 let compChoiceDisplay = document.querySelector("#comp-choice");
 let winnerInfo = document.querySelector("#winner-info");
 
+// TODO: refactor event listener functions below to abstract out
+// repeated code.
 rockBtn.addEventListener("click", () => {
     playerChoiceDisplay.textContent = "Rock";
+    let userChoice = r;
+    let computerChoice = getComputerChoice();
+    compChoiceDisplay.textContent = computerChoice;
+    let result = playRound(userChoice, computerChoice);
+    winnerInfo.textContent = result;
+})
+
+paperBtn.addEventListener("click", () => {
+    playerChoiceDisplay.textContent = "Paper";
+    let userChoice = p;
+    let computerChoice = getComputerChoice();
+    compChoiceDisplay.textContent = computerChoice;
+    let result = playRound(userChoice, computerChoice);
+    winnerInfo.textContent = result;
+})
+
+scissorsBtn.addEventListener("click", () => {
+    playerChoiceDisplay.textContent = "Scissors";
+    let userChoice = s;
+    let computerChoice = getComputerChoice();
+    compChoiceDisplay.textContent = computerChoice;
+    let result = playRound(userChoice, computerChoice);
+    winnerInfo.textContent = result;
 })
 
 // function main() {
