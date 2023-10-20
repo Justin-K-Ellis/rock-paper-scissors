@@ -1,79 +1,69 @@
-const r = "rock";
-const p = "paper";
-const s = "scissors";
+const r = "Rock";
+const p = "Paper";
+const s = "Scissors";
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
+const container = document.querySelector("#container");
 
 let playerChoiceDisplay = document.querySelector("#player-choice");
 let compChoiceDisplay = document.querySelector("#comp-choice");
 let winnerInfo = document.querySelector("#winner-info");
+let roundDisplay = document.querySelector("#round-display");
+let userPoints = document.querySelector("#user-points");
+let computerPoints = document.querySelector("#computer-points");
+let buttons = document.querySelector("#buttons");
 
-// TODO: refactor event listener functions below to abstract out
-// repeated code.
+let round = 0;
+let userScore = 0;
+let compScore = 0;
+userPoints.textContent = "User: 0";
+computerPoints.textContent = "Computer: 0";
+
+if (round === 5) {
+    rockBtn.disabled = true;
+    const victor = document.createElement("div");
+    victor.textContent = "The winner is: ";
+    container.insertBefore(victor, buttons);
+}
+
 rockBtn.addEventListener("click", () => {
     playerChoiceDisplay.textContent = "Rock";
     let userChoice = r;
-    let computerChoice = getComputerChoice();
-    compChoiceDisplay.textContent = computerChoice;
-    let result = playRound(userChoice, computerChoice);
-    winnerInfo.textContent = result;
+    processRound(userChoice);
 })
 
 paperBtn.addEventListener("click", () => {
     playerChoiceDisplay.textContent = "Paper";
     let userChoice = p;
-    let computerChoice = getComputerChoice();
-    compChoiceDisplay.textContent = computerChoice;
-    let result = playRound(userChoice, computerChoice);
-    winnerInfo.textContent = result;
+    processRound(userChoice);
 })
 
 scissorsBtn.addEventListener("click", () => {
     playerChoiceDisplay.textContent = "Scissors";
     let userChoice = s;
+    processRound(userChoice);
+})
+
+function processRound(userChoice) {
     let computerChoice = getComputerChoice();
     compChoiceDisplay.textContent = computerChoice;
     let result = playRound(userChoice, computerChoice);
     winnerInfo.textContent = result;
-})
-
-// function main() {
-//     // Initialize variables for num of rounds and wins.
-//     let rounds = 1;
-//     let userWins = 0;
-//     let compWins = 0
-//     while (rounds <= 1) {
-//         // Temporaily reduce to one round.
-//         // Play five rounds of rock paper scissors, count victories
-//         // for each player.
-//         //console.log(`Round ${rounds}!`) // TODO: make DOM method.
-//         let computerChoice = getComputerChoice();
-//         let userChoice = getUserChoice();
-//         //console.log(`User chooses ${userChoice}, computer chooses ${computerChoice}.`) // TODO: make DOM method.
-//         let result = playRound(userChoice, computerChoice);
-//         if (result === "User wins!") {
-//             userWins++;
-//         }
-//         else if (result === "Computer wins!") {
-//             compWins++;
-//         }
-//         //console.log(result); // TODO: make DOM method.
-//         rounds++;
-//     }
-//     // Determine the final winner after five rounds, give feedback to user.
-//     console.log(`User wins: ${userWins}. Computers wins: ${compWins}.`)
-//     if (userWins > compWins) {
-//         console.log("User is the victor!");
-//     }
-//     else if (compWins > userWins) {
-//         console.log("Computer is the victor!");
-//     }
-//     else {
-//         console.log("It's a draw!");
-//     }
-// }
+    if (result === "User wins!") {
+        userScore++;
+    }
+    else if (result === "Computer wins!") {
+        compScore++;
+    }
+    round++;
+    console.log(round); //for debug
+    roundDisplay.textContent = round;
+    userPoints.textContent = `User: ${userScore}`;
+    console.log(userPoints.textContent); //for debug
+    computerPoints.textContent = `Computer: ${compScore}`;
+}
 
 
 function getComputerChoice() {
@@ -91,16 +81,6 @@ function getComputerChoice() {
     }
     return compChoice;
 }
-
-
-// function getUserChoice() {
-//     // User input choice
-//     let userChoice;
-//     do {
-//         userChoice = prompt("Enter 'rock', 'paper', or 'scissors'.").toLowerCase();
-//     } while (!(userChoice === r || userChoice === p || userChoice === s));
-//     return userChoice;
-// }
 
 function getUserChoice() {
     // New getUserChoice function for UI version
@@ -131,5 +111,3 @@ function playRound(playerSelection, computerSelection) {
         return "Computer wins!";
     }
 }
-
-main();
