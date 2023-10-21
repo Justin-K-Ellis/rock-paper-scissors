@@ -57,10 +57,8 @@ function processRound(userChoice) {
         compScore++;
     }
     round++;
-    console.log(round); //for debug
     roundDisplay.textContent = round;
     userPoints.textContent = `User: ${userScore}`;
-    console.log(userPoints.textContent); //for debug
     computerPoints.textContent = `Computer: ${compScore}`;
 
     if (round === 5) {
@@ -68,7 +66,7 @@ function processRound(userChoice) {
         scissorsBtn.disabled = true;
         paperBtn.disabled = true;
         let victorStatement = document.createElement("div");
-        victorStatement.textContent = determineWinner(userPoints, computerPoints);
+        victorStatement.textContent = determineWinner(userScore, compScore);
         container.insertBefore(victorStatement, buttons);
     }
 }
