@@ -5,6 +5,7 @@ const s = "Scissors";
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
+const resetBtn = document.querySelector("#reset");
 const container = document.querySelector("#container");
 
 let playerChoiceDisplay = document.querySelector("#player-choice");
@@ -21,12 +22,6 @@ let compScore = 0;
 userPoints.textContent = "User: 0";
 computerPoints.textContent = "Computer: 0";
 
-if (round === 5) {
-    rockBtn.disabled = true;
-    const victor = document.createElement("div");
-    victor.textContent = "The winner is: ";
-    container.insertBefore(victor, buttons);
-}
 
 rockBtn.addEventListener("click", () => {
     playerChoiceDisplay.textContent = "Rock";
@@ -46,6 +41,10 @@ scissorsBtn.addEventListener("click", () => {
     processRound(userChoice);
 })
 
+resetBtn.addEventListener("click", () => {
+    location.reload();
+})
+
 function processRound(userChoice) {
     let computerChoice = getComputerChoice();
     compChoiceDisplay.textContent = computerChoice;
@@ -63,6 +62,15 @@ function processRound(userChoice) {
     userPoints.textContent = `User: ${userScore}`;
     console.log(userPoints.textContent); //for debug
     computerPoints.textContent = `Computer: ${compScore}`;
+
+    if (round === 5) {
+        rockBtn.disabled = true;
+        scissorsBtn.disabled = true;
+        paperBtn.disabled = true;
+        let victorStatement = document.createElement("div");
+        victorStatement.textContent = determineWinner(userPoints, computerPoints);
+        container.insertBefore(victorStatement, buttons);
+    }
 }
 
 
@@ -80,15 +88,6 @@ function getComputerChoice() {
         compChoice = s;
     }
     return compChoice;
-}
-
-function getUserChoice() {
-    // New getUserChoice function for UI version
-    const playerChoice = document.querySelector("player-choice");
-    const btn = document.querySelector("button");
-    btn.addEventListener("click", () => {
-        playerChoice.textContent += "The player pushed a button!";
-    })
 }
 
 
@@ -109,5 +108,17 @@ function playRound(playerSelection, computerSelection) {
     }
     else {
         return "Computer wins!";
+    }
+}
+
+function determineWinner(userPoints, compPoints) {
+    if (userPoints > compPoints) {
+        return "Victor: user!";
+    }
+    else if (compPoints > userPoints) {
+        return "Victor: computer!";
+    }
+    else {
+        return "It's a draw!";
     }
 }
