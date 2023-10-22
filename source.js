@@ -1,39 +1,75 @@
-const r = "rock";
-const p = "paper";
-const s = "scissors";
+const r = "Rock";
+const p = "Paper";
+const s = "Scissors";
 
-function main() {
-    // Initialize variables for num of rounds and wins.
-    let rounds = 1;
-    let userWins = 0;
-    let compWins = 0
-    while (rounds <= 5) {
-        // Play five rounds of rock paper scissors, count victories
-        // for each player.
-        console.log(`Round ${rounds}!`)
-        let computerChoice = getComputerChoice();
-        let userChoice = getUserChoice();
-        console.log(`User chooses ${userChoice}, computer chooses ${computerChoice}.`)
-        let result = playRound(userChoice, computerChoice);
-        if (result === "User wins!") {
-            userWins++;
-        }
-        else if (result === "Computer wins!") {
-            compWins++;
-        }
-        console.log(result);
-        rounds++;
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+const resetBtn = document.querySelector("#reset");
+const container = document.querySelector("#container");
+
+let playerChoiceDisplay = document.querySelector("#player-choice");
+let compChoiceDisplay = document.querySelector("#comp-choice");
+let winnerInfo = document.querySelector("#winner-info");
+let roundDisplay = document.querySelector("#round-display");
+let userPoints = document.querySelector("#user-points");
+let computerPoints = document.querySelector("#computer-points");
+let buttons = document.querySelector("#buttons");
+
+let round = 0;
+let userScore = 0;
+let compScore = 0;
+userPoints.textContent = "User: 0";
+computerPoints.textContent = "Computer: 0";
+
+// Buttons for user move selection
+rockBtn.addEventListener("click", () => {
+    playerChoiceDisplay.textContent = "Rock";
+    let userChoice = r;
+    processRound(userChoice);
+})
+
+paperBtn.addEventListener("click", () => {
+    playerChoiceDisplay.textContent = "Paper";
+    let userChoice = p;
+    processRound(userChoice);
+})
+
+scissorsBtn.addEventListener("click", () => {
+    playerChoiceDisplay.textContent = "Scissors";
+    let userChoice = s;
+    processRound(userChoice);
+})
+
+resetBtn.addEventListener("click", () => {
+    location.reload();
+})
+
+// Main business logic
+function processRound(userChoice) {
+    let computerChoice = getComputerChoice();
+    compChoiceDisplay.textContent = computerChoice;
+    let result = playRound(userChoice, computerChoice);
+    winnerInfo.textContent = result;
+    if (result === "User wins!") {
+        userScore++;
     }
-    // Determine the final winner after five rounds, give feedback to user.
-    console.log(`User wins: ${userWins}. Computers wins: ${compWins}.`)
-    if (userWins > compWins) {
-        console.log("User is the victor!");
+    else if (result === "Computer wins!") {
+        compScore++;
     }
-    else if (compWins > userWins) {
-        console.log("Computer is the victor!");
-    }
-    else {
-        console.log("It's a draw!");
+    round++;
+    roundDisplay.textContent = `Round: ${round}`;
+    userPoints.textContent = `User: ${userScore}`;
+    computerPoints.textContent = `Computer: ${compScore}`;
+
+    if (round === 5) {
+        rockBtn.disabled = true;
+        scissorsBtn.disabled = true;
+        paperBtn.disabled = true;
+        let victorStatement = document.createElement("div");
+        victorStatement.textContent = determineWinner(userScore, compScore);
+        victorStatement.classList.add("final-victor");
+        container.insertBefore(victorStatement, buttons);
     }
 }
 
@@ -55,16 +91,6 @@ function getComputerChoice() {
 }
 
 
-function getUserChoice() {
-    // User input choice
-    let userChoice;
-    do {
-        userChoice = prompt("Enter 'rock', 'paper', or 'scissors'.").toLowerCase();
-    } while (!(userChoice === r || userChoice === p || userChoice === s));
-    return userChoice;
-}
-
-
 function playRound(playerSelection, computerSelection) {
     // Logic for determining the winner of a single round of play
     let victory = "User wins!";
@@ -82,5 +108,17 @@ function playRound(playerSelection, computerSelection) {
     }
     else {
         return "Computer wins!";
+    }
+}
+
+function determineWinner(userPoints, compPoints) {
+    if (userPoints > compPoints) {
+        return "Game over! User is the victor!";
+    }
+    else if (compPoints > userPoints) {
+        return "Game over! Computer is the victor!";
+    }
+    else {
+        return "Game over! It's a draw!";
     }
 }

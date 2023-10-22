@@ -1,0 +1,74 @@
+* {
+    /* border: 1px solid black; */
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #443c3a;
+    color: white;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+
+#outer-container {
+    margin: auto;
+    width: 50%;
+    border: 1px solid white;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+#contaier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#round-container {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid white;
+}
+
+#choice-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid white;
+}
+
+#winner-info {
+    text-align: center;
+    border: 1px solid white;
+}
+
+#points-display {
+    border: 1px solid white;
+    margin-bottom: 10px;
+}
+
+#inner-points-display {
+    display: flex;
+    justify-content: space-around;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+#reset {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 25%;
+}
+
+.final-victor {
+    text-align: center;
+    margin-bottom: 10px;
+}
