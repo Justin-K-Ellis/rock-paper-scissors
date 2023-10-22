@@ -22,7 +22,7 @@ let compScore = 0;
 userPoints.textContent = "User: 0";
 computerPoints.textContent = "Computer: 0";
 
-
+// Buttons for user move selection
 rockBtn.addEventListener("click", () => {
     playerChoiceDisplay.textContent = "Rock";
     let userChoice = r;
@@ -45,6 +45,7 @@ resetBtn.addEventListener("click", () => {
     location.reload();
 })
 
+// Main business logic
 function processRound(userChoice) {
     let computerChoice = getComputerChoice();
     compChoiceDisplay.textContent = computerChoice;
@@ -57,7 +58,7 @@ function processRound(userChoice) {
         compScore++;
     }
     round++;
-    roundDisplay.textContent = round;
+    roundDisplay.textContent = `Round: ${round}`;
     userPoints.textContent = `User: ${userScore}`;
     computerPoints.textContent = `Computer: ${compScore}`;
 
@@ -67,6 +68,7 @@ function processRound(userChoice) {
         paperBtn.disabled = true;
         let victorStatement = document.createElement("div");
         victorStatement.textContent = determineWinner(userScore, compScore);
+        victorStatement.classList.add("final-victor");
         container.insertBefore(victorStatement, buttons);
     }
 }
@@ -111,12 +113,12 @@ function playRound(playerSelection, computerSelection) {
 
 function determineWinner(userPoints, compPoints) {
     if (userPoints > compPoints) {
-        return "Victor: user!";
+        return "Game over! User is the victor!";
     }
     else if (compPoints > userPoints) {
-        return "Victor: computer!";
+        return "Game over! Computer is the victor!";
     }
     else {
-        return "It's a draw!";
+        return "Game over! It's a draw!";
     }
 }
