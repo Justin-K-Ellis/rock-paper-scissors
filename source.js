@@ -1,6 +1,6 @@
-const r = "Rock";
-const p = "Paper";
-const s = "Scissors";
+const r = "Rock🪨";
+const p = "Paper📜";
+const s = "Scissors✂️";
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
@@ -24,19 +24,19 @@ computerPoints.textContent = "Computer: 0";
 
 // Buttons for user move selection
 rockBtn.addEventListener("click", () => {
-    playerChoiceDisplay.textContent = "Rock";
+    playerChoiceDisplay.textContent = r;
     let userChoice = r;
     processRound(userChoice);
 })
 
 paperBtn.addEventListener("click", () => {
-    playerChoiceDisplay.textContent = "Paper";
+    playerChoiceDisplay.textContent = p;
     let userChoice = p;
     processRound(userChoice);
 })
 
 scissorsBtn.addEventListener("click", () => {
-    playerChoiceDisplay.textContent = "Scissors";
+    playerChoiceDisplay.textContent = s;
     let userChoice = s;
     processRound(userChoice);
 })
@@ -51,10 +51,10 @@ function processRound(userChoice) {
     compChoiceDisplay.textContent = computerChoice;
     let result = playRound(userChoice, computerChoice);
     winnerInfo.textContent = result;
-    if (result === "User wins!") {
+    if (result === "User wins! 😀") {
         userScore++;
     }
-    else if (result === "Computer wins!") {
+    else if (result === "Computer wins! 😬") {
         compScore++;
     }
     round++;
@@ -93,9 +93,9 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     // Logic for determining the winner of a single round of play
-    let victory = "User wins!";
+    let victory = "User wins! 😀";
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        return "It's a tie! 👔";
     }
     else if (playerSelection === r && computerSelection === s) {
         return victory;
@@ -107,18 +107,18 @@ function playRound(playerSelection, computerSelection) {
         return victory;
     }
     else {
-        return "Computer wins!";
+        return "Computer wins! 😬";
     }
 }
 
 function determineWinner(userPoints, compPoints) {
     if (userPoints > compPoints) {
-        return "Game over! User is the victor!";
+        return "Game over! User is the victor! 😺";
     }
     else if (compPoints > userPoints) {
-        return "Game over! Computer is the victor!";
+        return "Game over! Computer is the victor! ☠️";
     }
     else {
-        return "Game over! It's a draw!";
+        return "Game over! It's a draw 💤";
     }
 }
