@@ -1,7 +1,7 @@
 * {
     font-family: 'Noto Sans', sans-serif;
-    background-color: #443c3a;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 h1,
@@ -15,8 +15,8 @@ button {
 
 #outer-container {
     margin: auto;
-    width: 50%;
-    border: 1px solid white;
+    width: 70vw;
+    border: 1px solid grey;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -33,7 +33,7 @@ button {
 #round-container {
     display: flex;
     justify-content: space-around;
-    border: 1px solid white;
+    border: 1px solid grey;
     border-radius: 10px;
     margin-bottom: 10px;
 }
@@ -42,18 +42,18 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border: 1px solid white;
+    border: 1px solid grey;
     border-radius: 10px;
 }
 
 #winner-info {
     text-align: center;
-    border: 1px solid white;
+    border: 1px solid grey;
     border-radius: 10px;
 }
 
 #points-display {
-    border: 1px solid white;
+    border: 1px solid grey;
     border-radius: 10px;
     margin-bottom: 10px;
 }
