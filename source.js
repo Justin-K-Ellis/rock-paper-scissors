@@ -1,6 +1,6 @@
-const r = "Rock🪨";
-const p = "Paper📜";
-const s = "Scissors✂️";
+const r = "🪨";
+const p = "📜";
+const s = "✂️";
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
